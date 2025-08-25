@@ -15,17 +15,36 @@ export const TodoWrapper = () => {
     console.log(todos);
   };
 
-  const toggleComplete = id => {
-    setTodos(todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo))
-  }
+  const toggleComplete = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
+  const deleteTodos = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
+  const editTodos = (id) => {
+    setTodos(todos.map(todo => todos.id === id ? {...todo, isEditing: !todo.isEditing} : todo))
+  };
 
   return (
     <div className="todo-wrapper">
       <h1>Get Things Done!</h1>
       <TodoForm addTodo={addTodo} />
-      {todos.map( todo => (
-        <Todo todo = {todo} key={todo.id} toggleComplete = {toggleComplete}/>
+      {todos.map((todo) => (
+        <Todo
+          todo={todo}
+          key={todo.id}
+          toggleComplete={toggleComplete}
+          deleteTodos={deleteTodos}
+          editTodos={editTodos}
+        />
       ))}
+      setTodos(todos.map(todos))
     </div>
   );
 };
