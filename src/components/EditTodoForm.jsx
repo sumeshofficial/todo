@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { Toaster, toast } from "sonner";
 
 export const EditTodoForm = ({ editTodo, task }) => {
   const [value, setValue] = useState(task.task);
-  const [error, setError] = useState("");
 
   const validate = (text) => {
     const trimmed = text.trim();
@@ -15,25 +15,26 @@ export const EditTodoForm = ({ editTodo, task }) => {
 
     const msg = validate(value);
     if (msg) {
-      setError(msg);
+      toast.error(msg);
       return;
     }
 
     editTodo(value.trim(), task.id);
 
     setValue("");
-    setError("");
+    toast.success("Successfully Updated");
   };
 
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
-      {error && <p className="error-text">{error}</p>}
       <input
         type="text"
         className="todo-input"
         value={value}
         placeholder="Edit Task"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
       />
       <button type="submit" className="todo-btn">
         Edit Task

@@ -3,7 +3,6 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export const Todo = ({ todo, toggleComplete, deleteTodos, editTodos }) => {
-
   return (
     <div className="todo">
       <p
@@ -21,5 +20,4 @@ export const Todo = ({ todo, toggleComplete, deleteTodos, editTodos }) => {
       </div>
     </div>
   );
-  
 };

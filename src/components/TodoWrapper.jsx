@@ -3,6 +3,7 @@ import { TodoForm } from "./TodoForm";
 import { v4 as uuidv4 } from "uuid";
 import { Todo } from "./Todo";
 import { EditTodoForm } from "./EditTodoForm";
+import { toast } from "sonner";
 uuidv4();
 
 export const TodoWrapper = () => {
@@ -21,10 +22,12 @@ export const TodoWrapper = () => {
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
     );
+    toast.success("Successfully Completed");
   };
 
   const deleteTodos = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
+    toast.success("Successfully Deleted");
   };
 
   const editTodos = (id) => {

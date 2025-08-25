@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { toast } from "sonner";
 
 export const TodoForm = ({ addTodo }) => {
   const [value, setValue] = useState("");
-  const [error, setError] = useState("");
 
   const validate = (text) => {
     const trimmed = text.trim();
@@ -15,18 +15,17 @@ export const TodoForm = ({ addTodo }) => {
 
     const msg = validate(value);
     if (msg) {
-      setError(msg);
+      toast.error(msg);
       return;
     }
 
     addTodo(value.trim());
     setValue("");
-    setError("");
+    toast.success("Successfully Added");
   };
 
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
-      {error && <p className="error-text">{error}</p>}
       <input
         type="text"
         className="todo-input"
@@ -34,7 +33,6 @@ export const TodoForm = ({ addTodo }) => {
         placeholder="What is the task today?"
         onChange={(e) => {
           setValue(e.target.value);
-          if (error) setError("");
         }}
       />
       <button type="submit" className="todo-btn">
