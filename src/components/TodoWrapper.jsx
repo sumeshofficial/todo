@@ -36,7 +36,6 @@ export const TodoWrapper = () => {
   };
 
   const editTask = (task, id) => {
-    console.log(task, id);
     setTodos(
       todos.map((todo) =>
         todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo
@@ -50,7 +49,7 @@ export const TodoWrapper = () => {
       <TodoForm addTodo={addTodo} />
       {todos.map((todo) =>
         todo.isEditing ? (
-          <EditTodoForm editTodo={editTask} task={todo} />
+          <EditTodoForm editTodo={editTask} task={todo} key={todo.id}/>
         ) : (
           <Todo
             todo={todo}

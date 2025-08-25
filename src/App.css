@@ -90,3 +90,6 @@ h1 {
   cursor: pointer;
 }
  
+.error-text {
+  color: red;
+}
