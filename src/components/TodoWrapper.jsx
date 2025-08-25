@@ -49,7 +49,7 @@ export const TodoWrapper = () => {
       <TodoForm addTodo={addTodo} />
       {todos.map((todo) =>
         todo.isEditing ? (
-          <EditTodoForm editTodo={editTask} task={todo} key={todo.id}/>
+          <EditTodoForm editTodo={editTask} task={todo} key={todo.id} />
         ) : (
           <Todo
             todo={todo}

@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 export const TodoForm = ({ addTodo }) => {
-
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
 
@@ -24,10 +23,10 @@ export const TodoForm = ({ addTodo }) => {
     setValue("");
     setError("");
   };
-  
+
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
-        {error && <p className="error-text">{error}</p>}
+      {error && <p className="error-text">{error}</p>}
       <input
         type="text"
         className="todo-input"
