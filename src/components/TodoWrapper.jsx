@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { Accordion } from "react-bootstrap";
 import { TodoForm } from "./TodoForm";
 import { v4 as uuidv4 } from "uuid";
 import { Todo } from "./Todo";
 import { EditTodoForm } from "./EditTodoForm";
 import { toast } from "sonner";
+import { CompletedTodos } from "./CompletedTodos";
 uuidv4();
 
 export const TodoWrapper = () => {
   const [todos, setTodos] = useState([]);
+  const [completed, setCompleted] = useState([]);
 
   const addTodo = (todo) => {
     setTodos([
@@ -16,12 +19,9 @@ export const TodoWrapper = () => {
     ]);
   };
 
-  const toggleComplete = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
+  const completeTodo = (id, task) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+    setCompleted([...completed, { id, task, completed: true }]);
     toast.success("Successfully Completed");
   };
 
@@ -57,12 +57,26 @@ export const TodoWrapper = () => {
           <Todo
             todo={todo}
             key={todo.id}
-            toggleComplete={toggleComplete}
+            completeTodo={completeTodo}
             deleteTodos={deleteTodos}
             editTodos={editTodos}
           />
         )
       )}
+      {completed.length > 0 ? (
+        <div className="completed-todos">
+          <Accordion>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Completed</Accordion.Header>
+              <Accordion.Body>
+                {completed.map((todo) => (
+                  <CompletedTodos todo={todo} key={todo.id} />
+                ))}
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        </div>
+      ) : null}
     </div>
   );
 };
