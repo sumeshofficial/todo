@@ -49,4 +49,4 @@ npm run build
 - Dark mode toggle
 - Author
 
-Developed by Sumesh J ✨
+Developed by Sumesh J
