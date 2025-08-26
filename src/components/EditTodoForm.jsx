@@ -1,28 +1,26 @@
 import { useState } from "react";
-import { toast } from "sonner";
+import { toLocalDateTime } from "../utils/dateUtils";
+import { validate } from "../utils/validateUtils";
+import { notifyError, notifySuccess } from "../utils/notify";
 
 export const EditTodoForm = ({ editTodo, task }) => {
   const [value, setValue] = useState(task.task);
-
-  const validate = (text) => {
-    const trimmed = text.trim();
-    if (!trimmed) return "Task cannot be empty.";
-    if (trimmed.length < 3) return "Task must be at least 3 characters long.";
-  };
+  const [deadline, setDeadline] = useState(task.deadline);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const msg = validate(value);
+    const msg = validate(value, deadline);
     if (msg) {
-      toast.error(msg);
+      notifyError(msg);
       return;
     }
 
-    editTodo(value.trim(), task.id);
+    editTodo(value.trim(), task.id, deadline);
 
     setValue("");
-    toast.success("Successfully Updated");
+    setDeadline("");
+    notifySuccess("Successfully Updated");
   };
 
   return (
@@ -39,6 +37,16 @@ export const EditTodoForm = ({ editTodo, task }) => {
       <button type="submit" className="todo-btn">
         Edit Task
       </button>
+
+      <div>
+        <input
+          type="datetime-local"
+          value={toLocalDateTime(deadline)}
+          onChange={(e) => setDeadline(e.target.value)}
+          aria-label="deadline"
+          className="deadline-input"
+        />
+      </div>
     </form>
   );
 };

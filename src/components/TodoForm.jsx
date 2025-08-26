@@ -1,27 +1,24 @@
 import { useState } from "react";
-import { toast } from "sonner";
+import { validate } from "../utils/validateUtils";
+import { notifyError, notifySuccess } from "../utils/notify";
 
 export const TodoForm = ({ addTodo }) => {
   const [value, setValue] = useState("");
-
-  const validate = (text) => {
-    const trimmed = text.trim();
-    if (!trimmed) return "Task cannot be empty.";
-    if (trimmed.length < 3) return "Task must be at least 3 characters long.";
-  };
+  const [deadline, setDeadline] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const msg = validate(value);
+    const msg = validate(value, deadline);
     if (msg) {
-      toast.error(msg);
+      notifyError(msg);
       return;
     }
 
-    addTodo(value.trim());
+    addTodo(value.trim(), deadline);
     setValue("");
-    toast.success("Successfully Added");
+    setDeadline("");
+    notifySuccess("Successfully Added");
   };
 
   return (
@@ -35,9 +32,20 @@ export const TodoForm = ({ addTodo }) => {
           setValue(e.target.value);
         }}
       />
+
       <button type="submit" className="todo-btn">
         Add Task
       </button>
+
+      <div>
+        <input
+          type="datetime-local"
+          value={deadline}
+          onChange={(e) => setDeadline(e.target.value)}
+          aria-label="deadline"
+          className="deadline-input"
+        />
+      </div>
     </form>
   );
 };

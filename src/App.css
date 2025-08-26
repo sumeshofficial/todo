@@ -42,7 +42,7 @@ h1 {
   border: 1px solid #8758ff;
   padding: 0.5rem 1rem;
   margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-right: 5px;
   width: 300px;
   color: #fff;
 }
@@ -57,12 +57,14 @@ h1 {
   border: none;
   padding: 0.55rem;
   cursor: pointer;
+  margin-left: 5px;
 }
 
 .todo {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   background: #8758ff;
   color: #fff;
   padding: 0.75rem 1rem;
@@ -72,6 +74,14 @@ h1 {
 
 .todo p {
   margin-bottom: 0;
+}
+
+.todo-task {
+  font-size: 20px;
+}
+
+.todo-date {
+  font-size: 12px;
 }
 
 .fa-trash {
@@ -115,7 +125,40 @@ h1 {
   box-shadow: none !important;
 }
 
-/* White arrow */
 .accordion-button::after {
   filter: invert(1);
+}
+
+.deadline-input {
+  outline: none;
+  background: none;
+  border: 1px solid #8758ff;
+  padding: 0.2rem 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: 220px;
+  color: #fff;
+  font-size: 0.9rem;
+  appearance: none;
+}
+
+.deadline-input::placeholder {
+  color: #ffffff4d;
+}
+
+.deadline-input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.deadline-input:focus {
+  border-color: #fff;
+}
+.deadline-input:hover {
+  border-color: #a882ff;
+}
+
+.over-due {
+  color: red;
 }

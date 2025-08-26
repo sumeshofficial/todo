@@ -1,11 +1,22 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { formatDeadline } from "../utils/dateUtils";
 
 export const Todo = ({ todo, completeTodo, deleteTodos, editTodos }) => {
   return (
     <div className="todo incompleted">
-      <p onClick={() => completeTodo(todo.id, todo.task)}>{todo.task}</p>
+      <div className={`${todo.overDue ? "over-due" : ""}`}>
+        <p
+          onClick={() => completeTodo(todo.id, todo.task)}
+          className="todo-task"
+        >
+          {todo.task}{" "}
+        </p>
+        {todo.deadline && (
+          <p className="todo-date">{formatDeadline(todo.deadline)}</p>
+        )}
+      </div>
       <div>
         <FontAwesomeIcon
           icon={faPenToSquare}
