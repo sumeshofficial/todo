@@ -1,14 +1,52 @@
-# React + Vite
+# Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and responsive Todo List Application built with React + Vite. This app allows users to add, edit, delete, and complete tasks, with completed tasks stored separately in an accordion view.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Add Todos – Create new tasks easily
+-  Mark as Completed – Move tasks to the completed list
+- Edit Todos – Update existing tasks inline
+- Delete Todos – Remove tasks permanently
+- Completed Section – Collapsible accordion for finished tasks
+- Toast Notifications – Success messages for user actions
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Frontend: React + Vite
 
-# todo-app
+Styling: CSS / Bootstrap
+
+Utilities: UUID, Sonner (toast notifications), React-Bootstrap Accordion
+
+## Installation & Setup
+
+### Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/your-username/todo-app.git
+cd todo-app
+npm install
+```
+
+### Run the development server:
+
+```bash
+npm run dev
+```
+
+### Build for production:
+
+```bash
+npm run build
+```
+
+### Future Improvements
+
+- Add authentication (login/signup)
+- Persist todos using localStorage or a backend
+- Mobile-first responsive design improvements
+- Dark mode toggle
+- Author
+
+Developed by Sumesh J ✨
